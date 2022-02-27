@@ -1,0 +1,7 @@
+{
+  "name": "trayek",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

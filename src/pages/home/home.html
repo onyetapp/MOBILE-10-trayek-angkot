@@ -1,0 +1,55 @@
+<ion-header no-border>
+  <ion-navbar class="violetbg" mode="md">
+
+    <ion-title text-uppercase color="putihku" content>
+      Trayek Angkot
+    </ion-title>
+
+    <ion-buttons end>
+      <button icon-only ion-button color="putihku" (click)="showCariRute()">
+        <ion-icon name="ios-search"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+  <ion-segment [(ngModel)]="segment" color="blueku">
+    <ion-segment-button value="angkot">
+      Angkot
+    </ion-segment-button>
+    <ion-segment-button value="rute">
+      Rute
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content>
+
+  <ion-fab bottom center>
+    <div class="label-fabku violetbg">Cari Angkot</div>
+    <button ion-fab class="violetbg" (click)="showCariAngkot()"><ion-icon name="car"></ion-icon></button>
+  </ion-fab>
+
+  <div [ngSwitch]="segment">
+
+    <ion-list *ngSwitchCase="'angkot'" inset>
+
+      <button ion-item *ngFor="let item of listangkot" (click)="showDetailTrayek(item)">
+        <ion-icon name="car" item-start></ion-icon>
+        <h3>Kode : <strong>{{ item.kode | uppercase }}</strong></h3>
+        <p>{{ getNameRuteFromID(item.rute[0]) | titlecase | slice:0:13 }}... - {{ getNameRuteFromID(item.rute[item.rute.length - 1]) | titlecase | slice:0:12 }}...</p>
+      </button>
+
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'rute'" inset>
+
+      <button ion-item *ngFor="let rute of listrute" (click)="showDetailRute(rute)">
+        <ion-icon name="locate" item-start></ion-icon>
+        <h2>{{ rute.nama | titlecase }}</h2>
+      </button>
+
+    </ion-list>
+
+  </div>
+</ion-content>
